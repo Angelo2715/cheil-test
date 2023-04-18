@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    <form id="registration-form">
+      <label for="first-name">First Name:</label>
+      <input type="text" id="first-name" required>
+
+      <label for="last-name">Last Name:</label>
+      <input type="text" id="last-name" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" required>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      const form = document.querySelector('#registration-form');
+      const firstNameInput = document.querySelector('#first-name');
+      const lastNameInput = document.querySelector('#last-name');
+      const emailInput = document.querySelector('#email');
+      const passwordInput = document.querySelector('#password');
+      const confirmPasswordInput = document.querySelector('#confirm-password');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (!validateForm()) {
+          return;
+        }
+
+        // Submit form data using Ajax or fetch API
+        console.log('Submitting form data...');
+      });
+
+      function validateForm() {
+        let isValid = true;
+
+        if (!firstNameInput.value.trim()) {
+          firstNameInput.classList.add('invalid');
+          isValid = false;
+        } else {
+          firstNameInput.classList.remove('invalid');
+        }
+
+        if (!lastNameInput.value.trim()) {
+          lastNameInput.classList.add('invalid');
+          isValid = false;
+        } else {
+          lastNameInput.classList.remove('invalid');
+        }
+
+        if (!emailInput.checkValidity()) {
+          emailInput.classList.add('invalid');
+          isValid = false;
+        } else {
+          emailInput.classList.remove('invalid');
+        }
+
+        if (!passwordInput.value.trim()) {
+          passwordInput.classList.add('invalid');
+          isValid = false;
+        } else {
+          passwordInput.classList.remove('invalid');
+        }
+
+        if (confirmPasswordInput.value !== passwordInput.value) {
+          confirmPasswordInput.classList.add('invalid');
+          isValid = false;
+        } else {
+          confirmPasswordInput.classList.remove('invalid');
+        }
+
+        return isValid;
+      }
+    </script>
+  </body>
+</html>
